@@ -42,7 +42,7 @@ def user(name):
 def page_not_found(error):
     return render_template("404.html"), 404
 
-
+# Internal Server Error thing
 @app.errorhandler(500)
 def page_not_found(error):
     render_template("500.html"), 500
