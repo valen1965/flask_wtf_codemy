@@ -1,23 +1,24 @@
-<h1>Hellow {{ first_name }}</h1>
+{% extends "base.html" %}
 
-<p>This is my first webpage</p>
+{% block content %}
+    <h1>Hellow {{ first_name }}</h1>
 
-<p>My name is {{ first_name }}</p>
+    <p>This is my first webpage</p>
 
-<p>{{ stuff|safe }}</p>
+    <p>My name is {{ first_name }}</p>
+
+    <p>{{ stuff|safe }}</p>
 
 
 
-<h2>My favorite pizza</h2>
-{% for pizza in favorite_pizza: %}
+    <h2>My favorite pizza</h2>
+    {% for pizza in favorite_pizza: %}
 
-    {% if pizza == 41 %}
-        {{ pizza + 100 }}<br/>
-    {% else %}
-        {{ pizza }}<br/>
-    {% endif %}
-{% endfor %}
-
-<br/><br/>
-{{ favorite_pizza.2|reverse|lower }}<br/>
-{{ favorite_pizza }}
+        {% if pizza == 41 %}
+            {{ pizza + 100 }}<br/>
+        {% else %}
+            {{ pizza }}<br/>
+        {% endif %}
+    {% endfor %}
+    <br/><br/>
+{% endblock %}
