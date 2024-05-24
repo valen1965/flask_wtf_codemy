@@ -1,6 +1,6 @@
 h1 {
     color: darkblue;
-    font-size: 5rem;
+    font-size: 2rem;
 }
 
 body {
@@ -17,4 +17,16 @@ body {
     font-size: 2rem;
     color: darkblue;
     font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+}
+
+span {
+    color: white;
+}
+
+.card-body {
+    background: #k1f1f1;
 }

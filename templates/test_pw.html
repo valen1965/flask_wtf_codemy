@@ -10,23 +10,37 @@
 
 {% endfor %}
 
-{% if name: %}
-    <h1>Hello {{ current_user.name }}!! </h1>
+{% if email: %}
+    <h1>Email: {{ email }}!! </h1>
+    <h1>Password: {{ password }}!! </h1>
     <br/>
-    <img src="{{ url_for('static', filename='images/NorthPeak.jpg') }}" class="img">
-    <br/><br/>
-    <p id="demo">This is stuff...</p>
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <h2>I found this info: </h2>
+    Name: {{ pw_to_check.name }}
+    <br/>
+    Email: {{ pw_to_check.email }}
+    <br/>
+    PW: {{ pw_to_check.password_hash }}
+    <br/>
+    Passed:  {{ passed }}
+
+
 {% else %}
-    <h1>What's Your Name?</h1>
+    <h1>What's Your Email and Password</h1>
     <br/>
    <form method="POST">
        {{ form.hidden_tag() }}
 
-       {{ form.name.label(
+       {{ form.email.label(
        class="form-label")  }}
-       {{ form.name(
+       {{ form.email(
        class="form-control") }}
+       <br>
+
+       {{ form.password_hash.label(
+       class="form-label")  }}
+       {{ form.password_hash(
+       class="form-control") }}
+
        <br/><br/>
        {{ form.submit(
        class="btn btn-secondary") }}
