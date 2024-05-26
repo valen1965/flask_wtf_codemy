@@ -3,9 +3,14 @@
 {% block content %}
 
 {% for message in get_flashed_messages(): %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible
+    fade show" role="alert">
         {{ message }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <button type="button" class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close">
+
+    </button>
     </div>
 
 {% endfor %}
@@ -15,23 +20,38 @@
 
 {% for post in all_posts: %}
 <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
-     <small>By: {{ post.author }}</small><br/>
-    <a href="{{ url_for('post', id=post.id ) }}">
-        <h2>{{ post.title }}</h2>
-    </a>
-    <br/>
-    Date Posted: {{ post.date_posted.date() }}<br/><br/>
-    {{ post.content }}
+    <h2><a href="{{ url_for('post', id=post.id ) }}">
+        {{ post.title }}
+    </a></h2>
+    <small>By: {{ post.poster.name }}</small><br/>
+    {{ post.date_posted.date() }}<br/><br/>
+    <div class="text-area">
+
+    {{ post.content|striptags }}
+    </div>
     <hr/>
+
     <a href="{{ url_for('post', id=post.id ) }}"
        class="btn btn-sm btn-outline-secondary btn-small">
         View Post
     </a>
+
+    {% if post.poster_id == current_user.id or
+    current_user.id == 36 %}
+    <a href="{{ url_for('edit_post', id=post.id ) }}"
+       class="btn btn-sm btn-outline-secondary btn-small">
+        Edit Post
+    </a>
+
     <a href="{{ url_for('delete_post', id=post.id ) }}"
        class="btn btn-sm btn-outline-danger ">
         delete
     </a>
+    {% endif %}
+
 </div>
 {% endfor %}
 
+
 {% endblock %}
+

@@ -22,6 +22,7 @@
           {{ our_user.username }} -
           {{ our_user.email }} -
           {{ our_user.favorite_color }} -
+          {{ our_user.about_author }} -
           PW: {{ our_user.password_hash }}-
           <a href="{{
           url_for('delete', id=our_user.id) }}">Delete</a>
@@ -66,6 +67,13 @@
        {{ form.favorite_color(
        class="form-control") }}
        <br>
+       {{ form.about_author.label(
+       class="form-label")  }}
+
+       {{ form.about_author(
+       class="form-control") }}
+       <br/>
+
        {{ form.password_hash.label(
        class="form-label")  }}
 
@@ -93,9 +101,14 @@
           {{ our_user.username }} -
           {{ our_user.email }} -
           {{ our_user.favorite_color }} -
+          {{ our_user.about_author }} -
           PW: {{ our_user.password_hash }}-
+          Our User id: {{ our_user.id }}
+
+          {% if our_user.id == current_user.id %}
           <a href="{{
           url_for('delete', id=our_user.id) }}">Delete</a>
+          {% endif %}
       </td>
 </tr>
 {% endfor %}

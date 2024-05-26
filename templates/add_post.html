@@ -2,6 +2,7 @@
 
 {% block content %}
 
+
 {% for message in get_flashed_messages(): %}
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ message }}
@@ -21,13 +22,7 @@
 
        {{ form.title(
        class="form-control") }}
-       <br/>
 
-       {{ form.author.label(
-       class="form-label")  }}
-
-       {{ form.author(
-       class="form-control") }}
        <br>
 
        {{ form.slug.label(
@@ -45,26 +40,30 @@
        <br/><br/>
        {{ form.submit(
        class="btn btn-secondary") }}
+
    </form>
+
+    {{ ckeditor.load() }}
+    {{ ckeditor.config(name='content') }}
 </div>
 <br/><br/>
-<table class="table table-hover table-bordered">
-{% for our_post in our_posts %}
-<tr>
-      <td> {{ our_post.id }}.
-          {{ our_post.author }} -
-          {{ our_post.title }} -
+<!--<table class="table table-hover table-bordered">-->
+<!--{% for our_post in our_posts %}-->
+<!--<tr>-->
+<!--      <td> {{ our_post.id }}.-->
+<!--          {{ our_post.author }} - -->
+<!--          {{ our_post.title }} - -->
 
-      </td>
-</tr>
-{% endfor %}
-</table>
+<!--      </td>-->
+<!--</tr>-->
+<!--{% endfor %}-->
+<!--</table>-->
 
 {% else %}
 <h2>Must Be Logged In...</h2>
 <p>Sorry, You must be logged in to account</p>
+<a href="{{ url_for('login') }}">Login Here</a>
 {% endif %}
 <br/><br/>
-<a href="{{ url_for('login') }}">Login Here</a>
 
 {% endblock %}

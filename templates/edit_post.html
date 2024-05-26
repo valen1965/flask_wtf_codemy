@@ -9,7 +9,9 @@
     </div>
 
 {% endfor %}
-
+<br/>
+<h2>Edit Post ...</h2>
+<br/><br/>
 <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
     <form method="POST">
        {{ form.hidden_tag() }}
@@ -20,13 +22,6 @@
        {{ form.title(
        class="form-control") }}
        <br/>
-
-       {{ form.author.label(
-       class="form-label")  }}
-
-       {{ form.author(
-       class="form-control") }}
-       <br>
 
        {{ form.slug.label(
        class="form-label")  }}
@@ -50,6 +45,10 @@
     </a>
 
     </form>
+    {{ ckeditor.load() }}
+    {{ ckeditor.config(name='content') }}
+
+
 </div>
 
 

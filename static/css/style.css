@@ -30,3 +30,14 @@ span {
 .card-body {
     background: #k1f1f1;
 }
+
+.alert-warning {
+    color: red;
+}
+
+.profile_img {
+    background: #f4f4f4;
+    padding: 20px 5px 0px 5px;
+}
+
+

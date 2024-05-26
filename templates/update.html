@@ -10,24 +10,10 @@
 
 {% endfor %}
 
-{% if name: %}
-    <h1>Update User</h1>
-    <br/>
-<table class="table table-hover table-bordered">
-{% for our_user in our_users %}
-<tr>
-      <td> {{ our_user.id }}.
-          {{ our_user.name }} -
-          {{ our_user.email }} -
-          {{ our_user.favorite_color }}
-      </td>
-</tr>
-{% endfor %}
-</table>
-    <br/><br/>
-{% else %}
+{% if id == current_user.id %}
     <h1>Update User...</h1>
-    <br/>
+    <br/><br/>
+
 <div class="shadow p-3 mb-5 bg-body-tertiary rounded">
    <form action="/update/{{ name_to_update.id }}" method="POST">
        {{ form.hidden_tag() }}
@@ -61,6 +47,15 @@
 
        {{ form.favorite_color(
        class="form-control", value=name_to_update.favorite_color) }}
+       <br/>
+
+        {{ form.about_author.label(
+       class="form-label")  }}
+
+        <textarea name="about_author" class="
+        form-control">{{
+        current_user.about_author }}
+        </textarea>
 
        <br/><br/>
        {{ form.submit(
@@ -71,6 +66,16 @@
 </div>
 <br/><br/>
 
+{% else %}
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+        Sorry! You Can't Edit This User...
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<br/>
+
+<h2>Access Denied</h2>
+<p>Sorry! You cannot access this user profile</p>
 
 {% endif %}
 

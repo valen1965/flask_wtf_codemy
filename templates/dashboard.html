@@ -3,37 +3,82 @@
 {% block content %}
 
 {% for message in get_flashed_messages(): %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
         {{ message }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 {% endfor %}
 
-
+<br/>
     <h2>Dashboard</h2>
-    <br/><br/>
 
+<br/>
 <div class="card">
   <div class="card-header">
     <strong>{{ current_user.name }}</strong>
   </div>
   <div class="card-body">
-    <h5 class="card-title" style="color:lightblue">
-        Welcome To Your User Dashboard ...
-    </h5>
-      <br/>
-    <strong>Name</strong>:  {{ current_user.name }}<br/>
-    <strong>Username</strong>:  {{ current_user.username }}<br/>
-    <strong>User Id</strong>:  {{ current_user.id }}<br/>
-    <strong>Email</strong>:  {{ current_user.email }}<br/>
-    <strong>Favorite Color</strong>:  {{ current_user.favorite_color }}<br/>
-    <strong>Date Joined</strong>:  {{ current_user.date_added.date() }}
-      <br/><br/>
-    <a href="{{ url_for('logout') }}" class="btn btn-outline-secondary btn-sm">Logout></a>
-    <a href="{{ url_for('update', id=current_user.id) }}" class="btn btn-outline-secondary btn-sm"
-    >Update Profiler</a>
-    <a href="{{ url_for('delete', id=current_user.id) }}" class="btn btn-outline-danger btn-sm">Delete</a>
-  </div>
+
+
+
+
+<div class="container">
+     <div class="row">
+          <div class="col-8">
+              <p class="card-text">
+                <strong>Name</strong>:
+                  {{ current_user.name }}<br/>
+
+                <strong>Username</strong>:
+                  {{ current_user.username }}<br/>
+
+                <strong>User Id</strong>:
+                  {{ current_user.id }}<br/>
+
+                <strong>Email</strong>:
+                  {{ current_user.email }}<br/>
+
+                <strong>Favorite Color</strong>:
+                  {{ current_user.favorite_color }}<br/>
+
+                <strong>About Author</strong>:
+                  {{ current_user.about_author }}<br/>
+
+                <strong>Profile Pic</strong>:
+                  {{ current_user.profile_pic }}<br/>
+
+                <strong>Date Joined</strong>:
+                  {{ current_user.date_added.date() }}<br/>
+
+
+
+              </p>
+
+                <a href="{{ url_for('logout') }}" class="btn btn-outline-secondary btn-sm"
+                >Logout></a>
+                <a href="{{ url_for('update', id=current_user.id) }}"
+                   class="btn btn-outline-secondary btn-sm"
+                >Update Profile</a>
+                <a href="{{ url_for('delete', id=current_user.id) }}"
+                   class="btn btn-outline-danger btn-sm">Delete</a>
+                <br/><br/>
+          </div>
+             <div class="col-4">
+                 {% if current_user.profile_pic %}
+                    <img src="{{ url_for('static', filename='images/' +  current_user.profile_pic) }}"
+                    class="profile_img"
+                    align="right"
+                    width="180">
+                 {% else %}
+                <img src="{{ url_for('static', filename='images/user_1.png') }}"
+                    class="profile_img"
+                    align="right"
+                    width="180">
+                 {% endif %}
+             </div>
+          </div>
+        </div>
+    </div>
 </div>
 
 <br/>
@@ -43,7 +88,8 @@
   </div>
   <div class="card-body">
 
-   <form action="/update/{{ current_user.id }}" method="POST">
+   <form action="/dashboard" method="POST"
+   enctype="multipart/form-data">
        {{ form.hidden_tag() }}
 
        {{ form.name.label(
@@ -62,7 +108,6 @@
 
        <br/>
 
-
        {{ form.email.label(
        class="form-label")  }}
 
@@ -75,9 +120,26 @@
 
        {{ form.favorite_color(
        class="form-control", value=current_user.favorite_color) }}
+       <br/>
 
-       <br/><br/>
-       {{ form.submit(
+       {{ form.about_author.label(
+       class="form-label") }}
+
+       <textarea name="about_author" class="
+       form-control ">{{
+           current_user.about_author }}</textarea>
+        <br/>
+
+        {{ form.profile_pic.label(
+       class="form-label")  }}
+
+       {{ form.profile_pic(
+       class="form-control", value=current_user.profile_pic) }}
+       <br/>
+
+
+       <br/>
+      {{ form.submit(
        class="btn btn-secondary") }}
 
 
