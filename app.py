@@ -14,7 +14,7 @@ import uuid as uuid
 
 load_dotenv(f"{os.getcwd()}/{'.env'}")
 WTF_SECRET_KEY = os.environ.get("WTF_SECRET_KEY")
-
+DATABASE_URI = os.environ.get("DATABASE_URI")
 # Create Flask Instance
 app = Flask(__name__)
 ckeditor = CKEditor(app)
@@ -26,7 +26,7 @@ ckeditor = CKEditor(app)
 # ws.com:5432/d9o84ffcc1g51b
 # ======================================================================
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://rgxamtzqfwbnph:1903d160f948b958d37e8f84f6a025c346daef04d0a72a432b0e8070cc9b979a@ec2-18-235-117-73.compute-1.amazonaws.com:5432/d9o84ffcc1g51b'
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 # Add database (MySQL DB)
