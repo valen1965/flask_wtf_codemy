@@ -19,10 +19,19 @@ WTF_SECRET_KEY = os.environ.get("WTF_SECRET_KEY")
 app = Flask(__name__)
 ckeditor = CKEditor(app)
 # Add database (sqlite)
+# Heroku database URL
+# ===============================
+# DATABASE_URL: postgres://rgxamtzqfwbnph:1903d160f948b958d37e8f84f6a025
+# c346daef04d0a72a432b0e8070cc9b979a@ec2-18-235-117-73.compute-1.amazona
+# ws.com:5432/d9o84ffcc1g51b
+# ======================================================================
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://rgxamtzqfwbnph:1903d160f948b958d37e8f84f6a025c346daef04d0a72a432b0e8070cc9b979a@ec2-18-235-117-73.compute-1.amazonaws.com:5432/d9o84ffcc1g51b'
+
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 # Add database (MySQL DB)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localdb
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password123@localhost/users'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password123@localhost/users'
 # Secret key for WTF forms
 app.config["SECRET_KEY"] = WTF_SECRET_KEY
 # initialize The database
@@ -488,7 +497,7 @@ class Users(db.Model, UserMixin):
     name = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(120), nullable=False, unique=True)
     favorite_color = db.Column(db.String(120))
-    about_author = db.Column(db.Text(500), nullable=True)
+    about_author = db.Column(db.Text(), nullable=True)
     date_added = db.Column(db.DateTime, default=datetime.utcnow)
     profile_pic = db.Column(db.String(120), nullable=True)
     #  Create password
