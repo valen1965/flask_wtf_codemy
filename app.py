@@ -27,8 +27,7 @@ ckeditor = CKEditor(app)
 # Add database (sqlite)
 # Heroku database URL
 # ===============================
-DATABASE_URI=('postgres://rgxamtzqfwbnph:1903d160f948b958d37e8f84f6a025c346daef04d0a72a432b0e8070cc9b979a@ec2-18-235'
-              '-117-73.compute-1.amazonaws.com:5432/d9o84ffcc1g51b')
+DATABASE_URI="postgres://ojwpjrfqoololg:4345d913d361ba22034a637001c529a18901cc6aa06d130e19d1648cccbd73c8@ec2-54-144-112-84.compute-1.amazonaws.com:5432/df7iss8edfnedn"
 # ======================================================================
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
