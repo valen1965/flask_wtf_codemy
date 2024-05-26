@@ -12,6 +12,9 @@ from flask_ckeditor import CKEditor
 from werkzeug.utils import secure_filename
 import uuid as uuid
 
+
+
+
 load_dotenv(f"{os.getcwd()}/{'.env'}")
 WTF_SECRET_KEY = os.environ.get("WTF_SECRET_KEY")
 DATABASE_URI = os.environ.get("DATABASE_URI")
