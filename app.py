@@ -15,9 +15,12 @@ import uuid as uuid
 
 
 
-load_dotenv(f"{os.getcwd()}/{'.env'}")
-WTF_SECRET_KEY = os.environ.get("WTF_SECRET_KEY")
-DATABASE_URI = os.environ.get("DATABASE_URI")
+# load_dotenv(f"{os.getcwd()}/{'.env'}")
+# WTF_SECRET_KEY = os.environ.get("WTF_SECRET_KEY")
+# DATABASE_URI = os.environ.get("DATABASE_URI")
+
+WTF_SECRET_KEY="it is super secret key of mine"
+DATABASE_URI = 'mysql+pymysql://root:password123@localhost/users'
 # Create Flask Instance
 app = Flask(__name__)
 ckeditor = CKEditor(app)
