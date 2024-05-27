@@ -32,7 +32,7 @@ ckeditor = CKEditor(app)
 # DATABASE_URI="postgres://ojwpjrfqoololg:4345d913d361ba22034a637001c529a18901cc6aa06d130e19d1648cccbd73c8@ec2-54-144-112-84.compute-1.amazonaws.com:5432/df7iss8edfnedn"
 # ======================================================================
 
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 # Add database (MySQL DB)
