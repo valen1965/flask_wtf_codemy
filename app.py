@@ -11,13 +11,15 @@ from dotenv import load_dotenv
 from flask_ckeditor import CKEditor
 from werkzeug.utils import secure_filename
 import uuid as uuid
+import psycopg2
 
 
 
 
-# load_dotenv(f"{os.getcwd()}/{'.env'}")
+load_dotenv(f"{os.getcwd()}/{'.env'}")
 # WTF_SECRET_KEY = os.environ.get("WTF_SECRET_KEY")
-# DATABASE_URI = os.environ.get("DATABASE_URI")
+DATABASE_URL = os.environ.get("DATABASE_URL")
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 WTF_SECRET_KEY="it is super secret key of mine"
 # DATABASE_URI = 'mysql+pymysql://root:password123@localhost/users'
@@ -27,7 +29,7 @@ ckeditor = CKEditor(app)
 # Add database (sqlite)
 # Heroku database URL
 # ===============================
-DATABASE_URI="postgres://ojwpjrfqoololg:4345d913d361ba22034a637001c529a18901cc6aa06d130e19d1648cccbd73c8@ec2-54-144-112-84.compute-1.amazonaws.com:5432/df7iss8edfnedn"
+# DATABASE_URI="postgres://ojwpjrfqoololg:4345d913d361ba22034a637001c529a18901cc6aa06d130e19d1648cccbd73c8@ec2-54-144-112-84.compute-1.amazonaws.com:5432/df7iss8edfnedn"
 # ======================================================================
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
