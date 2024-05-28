@@ -12,16 +12,15 @@ from flask_ckeditor import CKEditor
 from werkzeug.utils import secure_filename
 import uuid as uuid
 import psycopg2
-
-
-
+import requests
 
 load_dotenv(f"{os.getcwd()}/{'.env'}")
-# WTF_SECRET_KEY = os.environ.get("WTF_SECRET_KEY")
-DATABASE_URL=os.environ.get("DATABASE_URL")
+WTF_SECRET_KEY = os.environ.get("WTF_SECRET_KEY")
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
-WTF_SECRET_KEY="it is super secret key of mine"
+# WTF_SECRET_KEY = "it is super secret key of mine"
 # DATABASE_URI = 'mysql+pymysql://root:password123@localhost/users'
 # Create Flask Instance
 app = Flask(__name__)
@@ -31,8 +30,9 @@ ckeditor = CKEditor(app)
 # ===============================
 # DATABASE_URI="postgres://ojwpjrfqoololg:4345d913d361ba22034a637001c529a18901cc6aa06d130e19d1648cccbd73c8@ec2-54-144-112-84.compute-1.amazonaws.com:5432/df7iss8edfnedn"
 # ======================================================================
-
+# DATABASE_URL = "mysql+pymysql://admin:valen1965@demo-db-flasker.cz462qoewyi9.us-east-1.rds.amazonaws.com/demo-db-flasker"
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 # Add database (MySQL DB)
@@ -529,5 +529,3 @@ class Users(db.Model, UserMixin):
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
